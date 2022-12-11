@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import UserPage from "./components/UserPage";
+import TodosPage from "./components/TodosPage";
+import ExtraPage from "./components/ExtraPage";
+import { NavLink } from "react-router-dom";
+import UserItemPage from "./components/UserItemPage";
+import TodoItemPage from "./components/TodoItemPage";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div style={{padding: 15}}>
+        <NavLink style={{padding: 15}} to="/">Home</NavLink>
+        <NavLink style={{padding: 15}} to="/users">Users</NavLink>
+        <NavLink style={{padding: 15}} to="/todos">Todos</NavLink>
+      </div>
+      <Routes>
+        <Route path="/todos" element={<TodosPage />} />
+        <Route path="/users" element={<UserPage />} />
+        <Route path="/" element={<ExtraPage />} />
+        <Route path="/users/:id" element={<UserItemPage />} />
+        <Route path="/todos/:id" element={<TodoItemPage />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
